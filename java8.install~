@@ -1,0 +1,12 @@
+sudo gedit /etc/apt/sources.list and add following source lists
+
+deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main
+deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main
+
+# check the source list /etc/apt/sources.list #
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
+
+sudo apt-get update
+
+sudo apt-get install oracle-java8-installer 

@@ -1,0 +1,24 @@
+Right Alt, Right Ctrl 한/영, 한자키 등록
+
+xorg - How do I remap certain keys? 참조
+노트북이나 Real Force 같은 해외 키보드에는 한영키가 없으므로 오른쪽 Alt를 한영키로 매핑해야한다. 나비는 기본적으로 오른쪽 Alt를 한영키로 스스로 매핑할 수 있지만 UIM은 그렇지 못하다.
+따라서 오른쪽 Alt키 자체를 XWindow 가 Alt키가 아닌 Hangul 키로 인식하게 키 매핑을 바꿔준다.
+# 오른쪽 Alt키는 Key code가 보통 108 이다.
+# 키코드가 108이 아니라면 xev 명령을 실행하고 오른쪽 Alt를 눌러본 뒤에 나오는 키코드 값을 사용할 것.
+xmodmap -e 'remove mod1 = Alt_R' # Alt_R의 기본 키 매핑 제거
+xmodmap -e 'keycode 108 = Hangul' # Alt_R을 Hangul 키로 매핑
+ 
+# 하는김에 한자키를 Control_R로
+xmodmap -e 'remove control = Control_R'
+xmodmap -e 'keycode 105 = Hangul_Hanja'
+ 
+# 키 매핑 영구 저장
+xmodmap -pke > ~/.Xmodmap
+ 
+# 일부 구버전에서는 .xinitrc에서 매번 실행필요할 수도 최신 우분투는 아래 작업 안해줘도 됨.
+# ~/.xinitrc 에 다음 추가하거나 시작 프로그램으로 등록한다.
+xmodmap .Xmodmap
+ 
+# Mint Mate/XFCE의 경우 다음과 같은 명령을 시작 프로그램에 넣어야 올바로 작동했음.
+/usr/bin/xterm -e /usr/bin/xmodmap $HOME/.Xmodmap
+이제 UIM-벼루의 설정에서 한영 변환키와 한자 변환키를 Alt_R과 Control_R을 눌러 지정해주면 실제 값은 “hangul”, “hangul_hanja”로 들어가게 된다.

@@ -1,0 +1,13 @@
+#sudo gedit /etc/apt/sources.list.d/java8.list
+
+sudo sh -c 'echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/google.list'
+
+sudo sh -c 'echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" >> /etc/apt/sources.list.d/google.list'
+
+# check the source list /etc/apt/sources.list.d/java8.list #
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
+
+sudo apt-get update
+
+sudo apt-get install oracle-java8-installer 

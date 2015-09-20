@@ -1,0 +1,57 @@
+http://sourceforge.net/projects/fortunebible has a KJV Bible formatted for fortunes. download & extract it to /usr/share/games/fortunes.
+
+#! has fortunes pre-installed. if you don't have fortunes installed
+
+# apt-get install fortune-mod
+
+now you can get a random bible verse
+
+$ fortune bible
+
+add this to ~/.profile or ~/.bashrc to get it automatically every time you login to the console or start a shell.
+
+to get it to pop up in a notification
+
+$ notify-send "KJV Bible" "$(fortune bible)"
+
+add this to your x startup file to get popup notification automatically at startup. call it with a sleep delay if you don't want this to be the first popup at the start.
+
+i used xfce4-notifyd-config to change my notify theme to greybird, which looks like waldorf but also bolds the summary heading.
+
+you can also get this to popup every few mins/hrs, like i have in my .xsession
+
+while notify-send --urgency=low --icon=/usr/share/pixmaps/geany.xpm "KJV Bible" "$(fortune bible)"; do sleep 30m; done &
+
+or you can put this line to your openbox autostart in .config/openbox/autostart
+
+ok, now i would like your help with some shell scripting:
+
+$ fortune bible
+Better is the poor that walketh in his integrity, than he that is
+perverse in his lips, and is a fool.
+		-- Proverbs 19:1
+
+the output is a verse split into one or more lines, followed by a line with lots of spaces, then "--" and the "verse number".
+
+how could i extract the verse (in this case, first two lines) and the verse number (in this case, "Proverbs 19:1", third line after --) into two variables?
+
+what i want to do is
+
+$ notify-send "$verse-number" "$verse"
+
+update
+
+thanks to porkpiehat, we have a script for the above. let's call it "notify-verse". create this file in ~/bin, and make it executable.
+
+#!/bin/sh
+verse=$(fortune bible | xargs)
+notify-send --urgency=low --icon=/usr/share/pixmaps/geany.xpm "${verse#*--}" "${verse%--*}"
+
+$ chmod a+x ~/bin/notify-verse
+$ notify-verse
+
+let's test our script. if it didn't work, revisit the above.
+
+add this line to your x startup file (or openbox autostart), as mentioned above
+
+while notify-verse; do sleep 30m; done &

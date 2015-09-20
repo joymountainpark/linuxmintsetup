@@ -1,0 +1,12 @@
+1. download latest tomcat
+2. tar xvzf apache-tomcat*.tar.gz -C /tmp/
+3. sudo chown -R root:root /tmp/apache-tomcat*
+4. sudo mv /tmp/apache-tomcat-8* /opt/
+5. /opt/apache-tomcat-8*/bin/startup.sh
+   /opt/apache-tomcat-8*/bin/shutdown.sh
+
+# create symbolic link for tomcat server start/stop
+ln -s /opt/apache-tomcat-8.0.26/bin/shutdown.sh /usr/local/bin/tomcatstop
+ln -s /opt/apache-tomcat-8.0.26/bin/startup.sh /usr/local/bin/tomcatstart
+
+6. localhost:8080

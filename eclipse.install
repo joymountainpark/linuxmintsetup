@@ -1,0 +1,5 @@
+1. download latest eclipse 
+2. tar xvzf eclipse*.tar.gz -C /tmp/
+3. mv /tmp/eclipse /opt
+4. ln -s /opt/eclipse/eclipse /usr/local/bin/eclipse
+5. $ eclipse
