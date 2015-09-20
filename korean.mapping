@@ -17,7 +17,9 @@ xmodmap -pke > ~/.Xmodmap
  
 # 일부 구버전에서는 .xinitrc에서 매번 실행필요할 수도 최신 우분투는 아래 작업 안해줘도 됨.
 # ~/.xinitrc 에 다음 추가하거나 시작 프로그램으로 등록한다.
-xmodmap .Xmodmap
+
+#다음 실행
+$ xmodmap ~/.Xmodmap
  
 # Mint Mate/XFCE의 경우 다음과 같은 명령을 시작 프로그램에 넣어야 올바로 작동했음.
 /usr/bin/xterm -e /usr/bin/xmodmap $HOME/.Xmodmap
