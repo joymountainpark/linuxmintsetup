@@ -1,0 +1,13 @@
+1. Download Android Studio IDE
+
+2. unzip ~/Downloads/android-studio-ide*.zip
+
+3. su -c "chown -R root:root ~/Downloads/android-studio && mv ~/Downloads/android-studio /opt"
+
+4. su -c "ln -s /opt/android-studio/bin/studio.sh /usr/local/bin/android-studio"
+
+5. sudo apt-get install lib32stdc++6
+
+6. sudo apt-get install lib32z1
+
+7. launch android-studio && install sdk-tools subsequently

@@ -1,0 +1,6 @@
+# Login Genymotion Homepage & download genymotion file
+
+$ sudo bash ./genymotion-2.5.2_x64.bin -d /opt
+$ touch ~/.Genymobile/genymotion.log
+$ sudo ln -s /opt/genymotion/genymotion /usr/local/bin/genymotion
+
